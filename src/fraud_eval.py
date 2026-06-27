@@ -116,8 +116,8 @@ def print_metrics(metrics: Dict, title: str = "TEST RESULTS (per transaction)") 
     print("\n" + "-" * 60)
     print(title)
     print("-" * 60)
-    print(f"  Transactions scored: {metrics['n_transactions']:,}  "
-          f"(fraud: {metrics['n_fraud']:,})")
+    print(f"  Records scored: {metrics['n_transactions']:,}  "
+          f"(positives: {metrics['n_fraud']:,})")
     print(f"  PR-AUC  (avg precision): {metrics['pr_auc']:.4f}")
     print(f"  ROC-AUC:                 {metrics['roc_auc']:.4f}")
     print(f"  Threshold (best-F1 @val): {metrics['threshold']:.4f}")
