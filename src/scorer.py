@@ -111,16 +111,19 @@ class AnomalyScorer:
                     self.cov_inv_point = np.linalg.pinv(self.cov_point)
                 logger.info(f"Fitted point-level scorer (multivariate, m={num_features})")
 
-            # Also fit window-level for backward compatibility
-            all_errors_squeezed = all_errors.squeeze(-1)
-            self.mu = np.mean(all_errors_squeezed, axis=0)
-            errors_centered = all_errors_squeezed - self.mu
-            self.cov = np.cov(errors_centered, rowvar=False)
-            self.cov += self.config.regularization * np.eye(seq_len)
-            try:
-                self.cov_inv = np.linalg.inv(self.cov)
-            except np.linalg.LinAlgError:
-                self.cov_inv = np.linalg.pinv(self.cov)
+            # Also fit window-level for backward compatibility (univariate only:
+            # the legacy window-level scorer models the error across the time axis
+            # and is undefined for multivariate per-point errors).
+            if num_features == 1:
+                all_errors_squeezed = all_errors.squeeze(-1)
+                self.mu = np.mean(all_errors_squeezed, axis=0)
+                errors_centered = all_errors_squeezed - self.mu
+                self.cov = np.cov(errors_centered, rowvar=False)
+                self.cov += self.config.regularization * np.eye(seq_len)
+                try:
+                    self.cov_inv = np.linalg.inv(self.cov)
+                except np.linalg.LinAlgError:
+                    self.cov_inv = np.linalg.pinv(self.cov)
 
         else:
             all_errors = all_errors.squeeze(-1)
