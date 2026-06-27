@@ -226,3 +226,5 @@ data/creditcard.csv
 # Only the prebuilt reference at models/lstm_model.pt etc. is committed.
 models/initial/
 models/best/
+
+.claude/
