@@ -38,7 +38,7 @@ project venv directly with `.venv/bin/python …`.
 |---------|-----------------|-------------------|------------|
 | NYC taxi | `nyc_taxi.csv` | included in repo | yes (small) |
 | Credit-card fraud | `creditcard.csv` | <https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud> | no (~150 MB, gitignored) |
-| CICIDS2017 | `cicids2017_cleaned.csv` | <https://www.unb.ca/cic/datasets/ids-2017.html> | no (~717 MB, gitignored) |
+| CICIDS2017 | `cicids2017_cleaned.csv` | <https://www.unb.ca/cic/datasets/ids-2017.html>, <https://www.kaggle.com/datasets/ericanacletoribeiro/cicids2017-cleaned-and-preprocessed> | no (~717 MB, gitignored) |
 
 The two large CSVs exceed GitHub's 100 MB limit, so download them locally
 into `data/`.
