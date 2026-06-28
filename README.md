@@ -13,7 +13,7 @@ three pipelines; only the data shape and preprocessing change.
 |--------|------|-------|---------|
 | **NYC taxi demand** | ~10k half-hourly counts | univariate, weekly seasonality | `taxi/` |
 | **Credit-card fraud** | 284k transactions (Kaggle) | 29 features, 0.17% fraud | `fraud/` |
-| **Network intrusion** | 2.5M flows (CICIDS2017) | 52 features, 17% attacks | `cicids/` |
+| **Network intrusion** | 2.5M flows (CICIDS2017 - from Kaggle) | 52 features, 17% attacks | `cicids/` |
 
 Each domain follows the **same four-command journey**: train a baseline →
 evaluate → grid sweep → evaluate the best config. This one README covers all
