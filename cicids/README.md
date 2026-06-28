@@ -28,12 +28,12 @@ uv sync
 
 A four-command journey. User-trained artifacts go to `models/cicids/initial/`
 and `models/cicids/best/` (both gitignored). The CICIDS step scripts live in
-the repo root (not `code/`).
+the `cicids/` folder.
 
 #### 2a. Train the baseline
 
 ```bash
-uv run python 1_train_cicids.py
+uv run python cicids/1_train_cicids.py
 ```
 
 Trains a fast initial model (`hidden_dim=32`, `seq_len=20`, `10` epochs) on
@@ -45,7 +45,7 @@ benign flow windows and writes artifacts to `models/cicids/initial/`.
 #### 2b. Evaluate the baseline
 
 ```bash
-uv run python 2_evaluate_cicids.py
+uv run python cicids/2_evaluate_cicids.py
 ```
 
 Reprints the per-flow metrics and writes diagnostic plots to `evaluation/`:
@@ -55,7 +55,7 @@ Reprints the per-flow metrics and writes diagnostic plots to `evaluation/`:
 #### 2c. Run the grid sweep to find a better configuration
 
 ```bash
-uv run python 4_grid_sweep_cicids.py
+uv run python cicids/4_grid_sweep_cicids.py
 ```
 
 Sweeps `hidden_dim × sequence_length × learning_rate`, ranks the
@@ -65,7 +65,7 @@ saves it to `models/cicids/best/`.
 #### 2d. Evaluate the best-config model
 
 ```bash
-uv run python 2_evaluate_cicids.py --model-dir models/cicids/best
+uv run python cicids/2_evaluate_cicids.py --model-dir models/cicids/best
 ```
 
 Same evaluator, pointed at the retrained best artifacts.

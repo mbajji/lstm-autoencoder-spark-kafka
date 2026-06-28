@@ -10,8 +10,8 @@ plots to `evaluation/`:
     - cicids_pr_curve.png           : precision-recall curve (PR-AUC headline)
 
 Usage:
-    python code/2_evaluate_cicids.py
-    python code/2_evaluate_cicids.py --model-dir models/cicids/best
+    python cicids/2_evaluate_cicids.py
+    python cicids/2_evaluate_cicids.py --model-dir models/cicids/best
 """
 
 import argparse
@@ -27,7 +27,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn.metrics import precision_recall_curve
 
-PROJECT_ROOT = Path(__file__).resolve().parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.model import EncDecAD
@@ -97,7 +97,7 @@ def main():
     model_dir = Path(args.model_dir)
     if not (model_dir / "lstm_model.pt").exists():
         raise FileNotFoundError(
-            f"No model at {model_dir}. Run code/1_train_cicids.py "
+            f"No model at {model_dir}. Run cicids/1_train_cicids.py "
             f"(or 4_grid_sweep_cicids.py) first."
         )
 

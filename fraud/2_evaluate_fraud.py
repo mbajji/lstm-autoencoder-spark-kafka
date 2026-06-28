@@ -9,12 +9,12 @@ metrics, and writes diagnostic plots to `evaluation/`:
     - fraud_score_distribution.png : legit vs fraud point-score histograms
     - fraud_pr_curve.png           : precision-recall curve (PR-AUC headline)
 
-Mirrors the taxi evaluator (`code/2_evaluate_model.py`): one script, pointed
+Mirrors the taxi evaluator (`fraud/2_evaluate_model.py`): one script, pointed
 at whichever model directory you want to inspect.
 
 Usage:
-    python code/2_evaluate_fraud.py
-    python code/2_evaluate_fraud.py --model-dir models/credit_card/best
+    python fraud/2_evaluate_fraud.py
+    python fraud/2_evaluate_fraud.py --model-dir models/credit_card/best
 """
 
 import argparse
@@ -99,7 +99,7 @@ def main():
     model_dir = Path(args.model_dir)
     if not (model_dir / "lstm_model.pt").exists():
         raise FileNotFoundError(
-            f"No model at {model_dir}. Run code/1_train_fraud.py "
+            f"No model at {model_dir}. Run fraud/1_train_fraud.py "
             f"(or 4_grid_sweep_fraud.py) first."
         )
 

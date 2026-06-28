@@ -5,7 +5,7 @@ Trains an LSTM Encoder-Decoder on the NYC taxi CSV and saves artifacts
 to `models/initial/`. Defaults are intentionally a small, fast
 configuration (hidden_dim=24, epochs=20, lr=2e-3, train_weeks=6) so the
 baseline catches all 5 known anomalies but trips on 2 normal weeks
-(F1 ~ 83%). Step 4 (`code/4_grid_sweep.py`) then improves on it by
+(F1 ~ 83%). Step 4 (`taxi/4_grid_sweep.py`) then improves on it by
 searching for a better hyperparameter / split combination and
 retraining.
 
@@ -17,9 +17,9 @@ The prebuilt reference artifacts at `models/lstm_model.pt`,
 `models/scaler.pkl`, `models/scorer.pkl` are NEVER overwritten.
 
 Usage:
-    python code/1_train_model.py
-    python code/1_train_model.py --epochs 100 --hidden-dim 64 --lr 5e-4
-    python code/1_train_model.py --output-dir models/my_run
+    python taxi/1_train_model.py
+    python taxi/1_train_model.py --epochs 100 --hidden-dim 64 --lr 5e-4
+    python taxi/1_train_model.py --output-dir models/my_run
 """
 
 import argparse
@@ -113,7 +113,7 @@ def main():
     print()
     print("This is a fast baseline -- expect F1 around 83% (catches all 5 known")
     print("anomalies but trips on 2 normal weeks). Run")
-    print("    python code/4_grid_sweep.py")
+    print("    python taxi/4_grid_sweep.py")
     print("next to search for a better configuration. The sweep will retrain the")
     print("winning config and save it to models/best/.")
     print("=" * 60)

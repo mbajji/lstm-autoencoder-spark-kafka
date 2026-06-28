@@ -3,18 +3,18 @@ Step 2a (fraud): Train the baseline.
 
 Trains an LSTM Encoder-Decoder on the Kaggle credit-card stream and saves
 artifacts to `models/credit_card/initial/`. This mirrors the taxi baseline
-(`code/1_train_model.py`): a deliberately small, fast configuration
+(`fraud/1_train_model.py`): a deliberately small, fast configuration
 (hidden_dim=32, seq_len=30, 10 epochs) that learns the legitimate-transaction
 manifold well enough to flag fraud as reconstruction error, but leaves clear
-headroom for the grid sweep (`code/4_grid_sweep_fraud.py`) to improve on.
+headroom for the grid sweep (`fraud/4_grid_sweep_fraud.py`) to improve on.
 
 The model trains on LEGITIMATE windows only; fraud is detected as high
 point-level Mahalanobis distance (multivariate path, Malhotra et al. 2016).
 
 Usage:
-    python code/1_train_fraud.py
-    python code/1_train_fraud.py --epochs 30 --hidden-dim 64
-    python code/1_train_fraud.py --output-dir models/credit_card/my_run
+    python fraud/1_train_fraud.py
+    python fraud/1_train_fraud.py --epochs 30 --hidden-dim 64
+    python fraud/1_train_fraud.py --output-dir models/credit_card/my_run
 """
 
 import argparse
@@ -76,7 +76,7 @@ def main():
     print(f"Device:             {device}")
     print()
     print("This is a fast baseline -- expect a modest PR-AUC. Run")
-    print("    python code/4_grid_sweep_fraud.py")
+    print("    python fraud/4_grid_sweep_fraud.py")
     print("next to search for a better configuration and retrain the winner")
     print("into models/credit_card/best/.")
     print("=" * 60)

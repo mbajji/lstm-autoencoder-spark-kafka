@@ -6,8 +6,8 @@ PR-AUC on the test split, then RETRAINS the winner end-to-end into
 `models/cicids/best/`. Mirrors the taxi/fraud grid sweeps.
 
 Usage:
-    python code/4_grid_sweep_cicids.py
-    python code/4_grid_sweep_cicids.py --epochs 20 --max-rows 500000
+    python cicids/4_grid_sweep_cicids.py
+    python cicids/4_grid_sweep_cicids.py --epochs 20 --max-rows 500000
 """
 
 import argparse
@@ -20,7 +20,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-PROJECT_ROOT = Path(__file__).resolve().parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.model import create_model
@@ -137,7 +137,7 @@ def main():
         preprocess_config=pp_config,
     )
     print(f"\nArtifacts saved to: {args.output_dir}/")
-    print("Evaluate with: python code/2_evaluate_cicids.py --model-dir models/cicids/best")
+    print("Evaluate with: python cicids/2_evaluate_cicids.py --model-dir models/cicids/best")
     print("=" * 60)
 
 

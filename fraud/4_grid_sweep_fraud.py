@@ -6,13 +6,13 @@ learning_rate), ranks them by PR-AUC on the test split (the right headline
 metric at 0.17% fraud prevalence), then RETRAINS the winning configuration
 end-to-end and saves it to `models/credit_card/best/`.
 
-Mirrors the taxi grid sweep (`code/4_grid_sweep.py`): the baseline lives in
+Mirrors the taxi grid sweep (`fraud/4_grid_sweep.py`): the baseline lives in
 models/credit_card/initial/, the sweep tells you what it tried, and the
 retrained winner lands in models/credit_card/best/ for `2_evaluate_fraud.py`.
 
 Usage:
-    python code/4_grid_sweep_fraud.py
-    python code/4_grid_sweep_fraud.py --epochs 30
+    python fraud/4_grid_sweep_fraud.py
+    python fraud/4_grid_sweep_fraud.py --epochs 30
 """
 
 import argparse
@@ -140,7 +140,7 @@ def main():
         preprocess_config=pp_config,
     )
     print(f"\nArtifacts saved to: {args.output_dir}/")
-    print("Evaluate with: python code/2_evaluate_fraud.py --model-dir models/credit_card/best")
+    print("Evaluate with: python fraud/2_evaluate_fraud.py --model-dir models/credit_card/best")
     print("=" * 60)
 
 

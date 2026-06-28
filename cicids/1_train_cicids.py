@@ -8,9 +8,9 @@ normal-traffic manifold, so attacks (DoS/DDoS/PortScan/...) show up as high
 point-level Mahalanobis reconstruction error.
 
 Usage:
-    python code/1_train_cicids.py
-    python code/1_train_cicids.py --epochs 30 --hidden-dim 64
-    python code/1_train_cicids.py --max-rows 300000   # fast smoke run
+    python cicids/1_train_cicids.py
+    python cicids/1_train_cicids.py --epochs 30 --hidden-dim 64
+    python cicids/1_train_cicids.py --max-rows 300000   # fast smoke run
 """
 
 import argparse
@@ -22,7 +22,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-PROJECT_ROOT = Path(__file__).resolve().parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.model import create_model
@@ -70,7 +70,7 @@ def main():
     print(f"Max epochs:         {args.epochs}")
     print(f"Device:             {device}")
     print()
-    print("Fast baseline -- run code/4_grid_sweep_cicids.py next to improve it")
+    print("Fast baseline -- run cicids/4_grid_sweep_cicids.py next to improve it")
     print("and retrain the winner into models/cicids/best/.")
     print("=" * 60)
 

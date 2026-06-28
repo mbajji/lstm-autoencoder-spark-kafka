@@ -26,7 +26,7 @@ A four-command journey. User-trained artifacts go to
 #### 2a. Train the baseline
 
 ```bash
-uv run python code/1_train_fraud.py
+uv run python fraud/1_train_fraud.py
 ```
 
 Trains a fast initial model (`hidden_dim=32`, `seq_len=30`, `10` epochs) on
@@ -36,7 +36,7 @@ legitimate transaction windows and writes artifacts to
 #### 2b. Evaluate the baseline
 
 ```bash
-uv run python code/2_evaluate_fraud.py
+uv run python fraud/2_evaluate_fraud.py
 ```
 
 Reprints the per-transaction metrics and writes diagnostic plots to
@@ -46,7 +46,7 @@ histograms) and `fraud_pr_curve.png` (precision-recall curve).
 #### 2c. Run the grid sweep to find a better configuration
 
 ```bash
-uv run python code/4_grid_sweep_fraud.py
+uv run python fraud/4_grid_sweep_fraud.py
 ```
 
 Sweeps `hidden_dim × sequence_length × learning_rate`, ranks the
@@ -56,7 +56,7 @@ saves it to `models/credit_card/best/`.
 #### 2d. Evaluate the best-config model
 
 ```bash
-uv run python code/2_evaluate_fraud.py --model-dir models/credit_card/best
+uv run python fraud/2_evaluate_fraud.py --model-dir models/credit_card/best
 ```
 
 Same evaluator, pointed at the retrained best artifacts.
@@ -92,9 +92,9 @@ labels are never used to set the threshold).
 |------|------|
 | `src/preprocess_fraud.py` | Load / scale / window the credit-card stream |
 | `src/fraud_eval.py` | Shared per-transaction scoring + metrics |
-| `code/1_train_fraud.py` | Step 2a — train baseline |
-| `code/2_evaluate_fraud.py` | Steps 2b / 2d — evaluate + plots |
-| `code/4_grid_sweep_fraud.py` | Step 2c — sweep + retrain winner |
+| `fraud/1_train_fraud.py` | Step 2a — train baseline |
+| `fraud/2_evaluate_fraud.py` | Steps 2b / 2d — evaluate + plots |
+| `fraud/4_grid_sweep_fraud.py` | Step 2c — sweep + retrain winner |
 
 Reused unchanged from the taxi pipeline: `src/model.py`, `src/training.py`,
 and the multivariate path in `src/scorer.py`.

@@ -7,12 +7,12 @@ ranks results, then retrains the winning config end-to-end and saves
 its full artifact set to `models/best/` so you can evaluate it directly.
 
 Reuses `src.training.train_model` so each trial follows the same
-pipeline as `code/1_train_model.py`. NEVER overwrites the prebuilt
+pipeline as `taxi/1_train_model.py`. NEVER overwrites the prebuilt
 artifacts at `models/lstm_model.pt` etc.
 
 Modes:
-    python code/4_grid_sweep.py                  # default: hyperparams
-    python code/4_grid_sweep.py --mode split     # vary data split sizes
+    python taxi/4_grid_sweep.py                  # default: hyperparams
+    python taxi/4_grid_sweep.py --mode split     # vary data split sizes
 """
 
 import argparse
@@ -310,7 +310,7 @@ def retrain_best_and_save(
     Re-run the best configuration found during the sweep, then persist the
     full set of training artifacts (model, scaler, scorer, history, split
     config) to `args.best_dir` so the user can evaluate it directly with
-    `code/2_evaluate_model.py --model-dir <best_dir>`.
+    `taxi/2_evaluate_model.py --model-dir <best_dir>`.
     """
     cfg = best_result.config_dict
     print()
@@ -362,7 +362,7 @@ def retrain_best_and_save(
     print()
     print(f"Best-config artifacts written to: {args.best_dir}/")
     print("Inspect them with:")
-    print(f"  python code/2_evaluate_model.py --model-dir {args.best_dir}")
+    print(f"  python taxi/2_evaluate_model.py --model-dir {args.best_dir}")
     print("=" * 60)
 
 
@@ -640,7 +640,7 @@ def main() -> None:
     if baseline_dir.exists():
         print(f"Baseline (from step 1): {baseline_dir}")
     else:
-        print(f"Baseline directory {baseline_dir} not found -- run code/1_train_model.py first.")
+        print(f"Baseline directory {baseline_dir} not found -- run taxi/1_train_model.py first.")
     print(f"Best-config output:     {args.best_dir}")
     print(f"Models in models/lstm_model.pt etc are NEVER touched.")
     print("=" * 60)

@@ -12,9 +12,9 @@ diagnostic plots to `evaluation/`. See `notebooks/model_design.ipynb`
 for the underlying scoring methodology.
 
 Usage:
-    python code/2_evaluate_model.py
-    python code/2_evaluate_model.py --model-dir models/best
-    python code/2_evaluate_model.py --no-plots
+    python taxi/2_evaluate_model.py
+    python taxi/2_evaluate_model.py --model-dir models/best
+    python taxi/2_evaluate_model.py --no-plots
 """
 
 import argparse
@@ -294,7 +294,7 @@ def main():
     if scorer.mu is None or scorer.cov is None or scorer.threshold is None:
         raise RuntimeError(
             "Loaded scorer is missing window-level Mahalanobis state (mu/cov/threshold). "
-            "Re-train with code/1_train_model.py (or run code/4_grid_sweep.py)."
+            "Re-train with taxi/1_train_model.py (or run taxi/4_grid_sweep.py)."
         )
 
     # Compute train scores for distribution plot

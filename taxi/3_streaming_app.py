@@ -9,7 +9,7 @@ WHEN TO USE THIS SCRIPT
 -----------------------
 Run it after you have a trained model in `models/` (either the prebuilt
 artifacts that ship with the repo, or your own output from
-`code/1_train_model.py` or `code/4_grid_sweep.py`) and you want to see
+`taxi/1_train_model.py` or `taxi/4_grid_sweep.py`) and you want to see
 the detector running on a live stream rather than a batch evaluation.
 
 This is the Docker entrypoint -- DO NOT run it directly with `python`.
